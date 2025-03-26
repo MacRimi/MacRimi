@@ -47,3 +47,12 @@ Siempre trato de ayudar a los demás en lo que pueda, disfrutando del camino. Y 
 
 ---
 
+
+<h2 align="center">🐍 Mis contribuciones en movimiento</h2>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg" />
+  <img alt="GitHub contribution grid snake animation" src="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg" />
+</picture>
+
