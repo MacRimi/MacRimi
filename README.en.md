@@ -1,3 +1,9 @@
+<p align="right">
+  <a href="#"><img src="https://flagcdn.com/w20/es.png" alt="Español"></a>
+  <a href="https://github.com/MacRimi/MacRimi/blob/main/README.en.md"><img src="https://flagcdn.com/w20/gb.png" alt="English"></a>
+</p>
+
+
 # Hello there! 👋 I'm MacRimi
 
 💻 Passionate about technology, servers, Proxmox VE, computers, home automation, retro games, *The Goonies*, *Star Wars*...  
