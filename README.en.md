@@ -1,3 +1,9 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg" />
+  <img alt="GitHub contribution grid snake animation" src="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg" />
+</picture>
+
 <p align="right">
   <a href="https://github.com/MacRimi/MacRimi/blob/main/README.md"><img src="https://flagcdn.com/w20/es.png" alt="Español"></a>
   <a href="https://github.com/MacRimi/MacRimi/blob/main/README.en.md"><img src="https://flagcdn.com/w20/gb.png" alt="English"></a>
