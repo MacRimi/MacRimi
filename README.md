@@ -1,6 +1,5 @@
-<p align="right">
-🌐 Idioma:  
-🇪🇸 Español | 🇬🇧 [English](https://github.com/MacRimi/MacRimi/blob/main/README.en.md)
+<p align="right" style="font-size: 0.8em;">
+🌐 [🇪🇸](#) | [🇬🇧](https://github.com/MacRimi/MacRimi/blob/main/README.en.md)
 </p>
 
 
