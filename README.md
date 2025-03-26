@@ -1,6 +1,6 @@
 <p align="right">
 🌐 Idioma:  
-🇪🇸 Español | [🇬🇧 English](#english-version-)
+🇪🇸 Español | [🇬🇧 English](./README.en.md)
 </p>
 
 
