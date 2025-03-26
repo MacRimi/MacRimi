@@ -1,6 +1,6 @@
 <p align="right">
 🌐 Idioma:  
-🇪🇸 Español | [🇬🇧 English](./README.en.md)
+🇪🇸 Español | 🇬🇧 [English](https://github.com/MacRimi/MacRimi/blob/main/README.en.md)
 </p>
 
 
