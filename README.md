@@ -1,3 +1,9 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg" />
+  <img alt="GitHub contribution grid snake animation" src="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg" />
+</picture>
+
 <p align="right">
   <a href="#"><img src="https://flagcdn.com/w20/es.png" alt="Español"></a>
   <a href="https://github.com/MacRimi/MacRimi/blob/main/README.en.md"><img src="https://flagcdn.com/w20/gb.png" alt="English"></a>
@@ -47,12 +53,4 @@ Siempre trato de ayudar a los demás en lo que pueda, disfrutando del camino. Y 
 
 ---
 
-
-<h2 align="center">🐍 Mis contribuciones en movimiento</h2>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg" />
-  <img alt="GitHub contribution grid snake animation" src="https://raw.githubusercontent.com/platane/platane/output/github-contribution-grid-snake.svg" />
-</picture>
 
