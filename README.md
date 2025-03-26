@@ -1,3 +1,8 @@
+<p align="right">
+🌐 Idioma:  
+🇪🇸 Español | [🇬🇧 English](#english-version-)
+</p>
+
 # ¡Hola! 👋 Soy MacRimi
 
 💻 Apasionado de la tecnología, los servidores, Proxmox VE, los ordenadores, la domótica, los juegos retro, *Los Goonies*, *Star Wars*…  
