@@ -6,7 +6,7 @@
 
 <p align="right">
   <a href="#"><img src="https://flagcdn.com/w20/es.png" alt="Español"></a>
-  <a href="https://github.com/MacRimi/MacRimi/blob/main/README.en.md"><img src="https://flagcdn.com/w20/gb.png" alt="English"></a>
+  <a href="https://github.com/MacRimi/MacRimi/blob/main/README.en.md"><img src="https://flagcdn.com/w40/gb.png" alt="English"></a>
 </p>
 
 
