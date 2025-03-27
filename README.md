@@ -5,8 +5,8 @@
 </picture>
 
 <p align="right">
-  <a href="#"><img src="https://flagcdn.com/w80/es.png" alt="Español" width="23"></a>
-  <a href="https://github.com/MacRimi/MacRimi/blob/main/README.en.md"><img src="https://flagcdn.com/w80/gb.png" alt="English" width="30"></a>
+  <a href="#"><img src="https://flagcdn.com/w80/es.png" alt="Español" width="30" height="20" style="margin-right: 6px;"></a>
+  <a href="https://github.com/MacRimi/MacRimi/blob/main/README.en.md"><img src="https://flagcdn.com/w80/gb.png" alt="English" width="30" height="20"></a>
 </p>
 
 
