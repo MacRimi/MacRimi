@@ -36,7 +36,10 @@ Más de editar una foto que simplemente verla.
 
 ## 🌟 Proyectos que me hacen sentir orgulloso
 
-### <img src="https://github.com/MacRimi/ProxMenux/blob/main/images/logo.png" width="30" height="30" /> **ProxMenux**
+<h3 style="text-align: center;">
+  <img src="https://github.com/MacRimi/ProxMenux/blob/main/images/logo_desc.png" width="30" height="30" />
+  **ProxMenux**
+</h3>
 Un menú interactivo para facilitar el uso, mantenimiento y gestión de Proxmox VE a cualquier usuario, independientemente de su experiencia o conocimientos técnicos.
 
 ### 🎥 **HWEncoderX**
