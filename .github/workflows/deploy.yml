@@ -37,5 +37,9 @@ jobs:
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: web/out  # Ruta a la carpeta de salida dentro de 'web'
+          folder: web/out  # Asegúrate de que esta ruta sea correcta
           branch: gh-pages
+          clean: true      # Limpia los archivos existentes
+          clean-exclude: |
+            .nojekyll
+          single-commit: true  # Usa un solo commit en lugar de preservar la historia
