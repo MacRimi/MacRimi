@@ -28,9 +28,9 @@ Aunque, si me remonto más atrás, ya por el año 2000 había creado mi primer p
 
 ---
 
-🎮 Siempre he sido más de desmontar un juego para ver cómo funciona, que de jugarlo.  
-Más de entender cómo trabaja un ordenador, que de solo usarlo.  
-Más de editar una foto que simplemente verla.
+🎮 Nunca me ha bastado con usar las cosas, siempre he necesitado entender cómo funcionan.  
+Juegos, ordenadores, herramientas, sistemas... Disfruto explorando la lógica detrás de todo, las capas ocultas que hacen que todo funcione.  
+Para mí, lo verdaderamente divertido empieza cuando empiezo a comprender cómo está hecho.
 
 ---
 
