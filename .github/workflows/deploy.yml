@@ -24,7 +24,7 @@ jobs:
           cache-dependency-path: web/package-lock.json  # Ruta al package-lock.json
 
       - name: Install dependencies 📦
-        run: npm ci --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
       - name: Build 🔧
         run: npm run build
