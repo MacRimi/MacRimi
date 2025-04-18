@@ -12,8 +12,8 @@
 
 # Hello there! 👋 I'm MacRimi
 
-💻 Passionate about technology, servers, Proxmox VE, computers, home automation, retro games, *The Goonies*, *Star Wars*...  
-And back to what really drives me: application development. 🚀
+💻 Tech enthusiast, passionate about servers, Proxmox VE, computers, home automation, retro games, The Goonies, Star Wars…
+And now, back to what brings us here: app development. 🚀
 
 That’s where I truly enjoy myself and where I feel most at home.  
 All my projects are born from my own needs, and I’ve always believed that if something is useful to me, it might also be useful to others. That’s why everything I build is crafted with care, attention to detail, and genuine love—because at the end of the day, I build it for myself first.
