@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # o master, dependiendo de cómo se llame tu rama principal
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web  # Establece el directorio de trabajo predeterminado para los comandos
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: web/package-lock.json  # Ruta al package-lock.json
+
+      - name: Install dependencies 📦
+        run: npm ci
+
+      - name: Build 🔧
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+
+      - name: Add .nojekyll file 🚫
+        run: touch out/.nojekyll
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: web/out  # Ruta a la carpeta de salida dentro de 'web'
+          branch: gh-pages
