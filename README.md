@@ -12,7 +12,7 @@
 
 # ¡Hola! 👋 Soy MacRimi
 
-💻 Apasionado de la tecnología, los servidores, Proxmox VE, los ordenadores, la domótica, los juegos retro, *Los Goonies*, *Star Wars*…  
+💻 Entusiasta de la tecnología, los servidores, Proxmox VE, los ordenadores, la domótica, los juegos retro, *Los Goonies*, *Star Wars*…  
 Y volviendo a lo que nos trae aquí: el desarrollo de aplicaciones. 🚀
 
 Es justo ahí, en el desarrollo, donde más disfruto y donde más me siento yo.  
