@@ -29,9 +29,9 @@ Although if I go further back, around the year 2000, I created my first website:
 
 ---
 
-🎮 I’ve always been more interested in **how a game works** than actually playing it.  
-More into **how a computer works** than just using it.  
-More into **editing a photo** than simply looking at it.
+🎮 I’ve never been satisfied just using things—I’ve always needed to know how they work.  
+Games, computers, tools, systems... I enjoy digging into the logic behind them, the hidden layers that make them tick.  
+For me, understanding is where the real fun begins.
 
 ---
 
