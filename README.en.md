@@ -12,7 +12,7 @@
 
 # Hello there! 👋 I'm MacRimi
 
-💻 Tech enthusiast into servers, Proxmox VE, computers, home automation, retro games, The Goonies, Star Wars…
+💻 Enthusiast of technology, servers, Proxmox VE, computers, home automation, retro games, The Goonies, Star Wars…
 And now, back to what brings us here: app development. 🚀
 
 That’s where I truly enjoy myself and where I feel most at home.  
