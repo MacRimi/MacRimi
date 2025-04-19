@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     apple: { url: "https://macrimi.github.io/MacRimi/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     shortcut: "https://macrimi.github.io/MacRimi/favicon/favicon.ico",
     other: [
+      { url: "https://macrimi.github.io/MacRimi/macrimi-preview.png", type: "image/png" },
       { url: "https://macrimi.github.io/MacRimi/favicon/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png" },
       { url: "https://macrimi.github.io/MacRimi/favicon/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png" }
     ]
