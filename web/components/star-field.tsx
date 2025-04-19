@@ -9,15 +9,16 @@ interface Star {
   opacity: number
   blinkSpeed: number
   blinkDirection: number
-  // Nuevas propiedades para el efecto de hiperespacio
+  // Propiedades para el efecto de hiperespacio
   originalX: number
   originalY: number
   speedFactor: number
+  color: string // Propiedad para color personalizado
 }
 
 interface StarFieldProps {
   blurAmount?: number
-  hyperSpaceFactor?: number // Nuevo prop para controlar la intensidad del efecto
+  hyperSpaceFactor?: number // Prop para controlar la intensidad del efecto
 }
 
 export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldProps) {
@@ -88,6 +89,14 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
       const starCount = Math.floor((canvas.width * canvas.height) / densityFactor)
       const stars: Star[] = []
 
+      // Colores para las estrellas - más variedad para un efecto más realista
+      const starColors = [
+        "255, 255, 255", // Blanco
+        "200, 220, 255", // Azul claro
+        "255, 240, 200", // Amarillo suave
+        "220, 220, 255", // Azul muy claro
+      ]
+
       for (let i = 0; i < starCount; i++) {
         const x = Math.random() * canvas.width
         const y = Math.random() * canvas.height
@@ -97,10 +106,11 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
           originalX: x, // Store original position for hyperspace effect
           originalY: y, // Store original position for hyperspace effect
           size: Math.random() * (isMobile ? 2 : 2) + 0.5,
-          opacity: Math.random(),
-          blinkSpeed: Math.random() * 0.02 + 0.005,
+          opacity: Math.random() * 0.5 + 0.5, // Mayor opacidad base para mejor visibilidad
+          blinkSpeed: Math.random() * 0.015 + 0.005, // Aumentado para un centelleo más visible como al principio
           blinkDirection: Math.random() > 0.5 ? 1 : -1,
-          speedFactor: Math.random() * 0.5 + 0.5, // Random speed factor for varied hyperspace effect
+          speedFactor: Math.random() * 0.8 + 0.4, // Mayor variación en la velocidad
+          color: starColors[Math.floor(Math.random() * starColors.length)], // Color aleatorio
         })
       }
 
@@ -155,7 +165,7 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
         star.opacity += star.blinkSpeed * star.blinkDirection
 
         // Change direction if opacity reaches limits
-        if (star.opacity >= 1 || star.opacity <= 0.1) {
+        if (star.opacity >= 0.9 || star.opacity <= 0.4) {
           star.blinkDirection *= -1
         }
 
@@ -169,31 +179,45 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
           // Calculate angle from center
           const angle = Math.atan2(dy, dx)
 
-          // Calculate stretch factor based on distance and hyperSpaceFactor
-          const stretchFactor = (distance / 100) * hyperSpaceFactor * star.speedFactor
+          // Mejorar el factor de estiramiento para un efecto más dramático
+          // Aumentamos significativamente el multiplicador para estrellas más alejadas del centro
+          const distanceFactor = Math.min(4, distance / (canvas.width / 10)) // Aumentado para mayor estiramiento
+          const stretchFactor = (distance / 40) * hyperSpaceFactor * star.speedFactor * distanceFactor // Reducido el divisor para mayor estiramiento
 
-          // Update star position with hyperspace effect
+          // Update star position with hyperspace effect - estiramiento más dramático
           star.x = star.originalX + Math.cos(angle) * stretchFactor
           star.y = star.originalY + Math.sin(angle) * stretchFactor
 
           // Adjust star size based on hyperspace effect
-          const dynamicSize = star.size * (1 + hyperSpaceFactor * 0.2)
+          const dynamicSize = star.size * (1 + hyperSpaceFactor * 0.3)
 
-          // Draw elongated star (line) for hyperspace effect
+          // Calcular un punto de inicio más desplazado para eliminar completamente el punto de origen
+          // Esto hace que la línea comience más adelante del punto original
+          const startOffsetFactor = Math.min(1.5, hyperSpaceFactor / 10) // Aumentado para mayor desplazamiento
+          const startX = star.originalX + Math.cos(angle) * (distance * startOffsetFactor * 0.08) // Aumentado el multiplicador
+          const startY = star.originalY + Math.sin(angle) * (distance * startOffsetFactor * 0.08)
+
+          // Crear un gradiente para las líneas de estrellas para un efecto más realista
+          const gradient = ctx.createLinearGradient(startX, startY, star.x, star.y)
+
+          // El gradiente comienza con un color más brillante y termina desvaneciéndose
+          gradient.addColorStop(0, `rgba(${star.color}, ${star.opacity * 0.95})`)
+          gradient.addColorStop(1, `rgba(${star.color}, ${star.opacity * 0.6})`)
+
+          // Draw elongated star (line) for hyperspace effect - sin punto de origen
           ctx.beginPath()
-          ctx.moveTo(star.originalX, star.originalY)
+          ctx.moveTo(startX, startY)
           ctx.lineTo(star.x, star.y)
 
-          // Add blue/white color for hyperspace effect
-          const blueIntensity = Math.min(255, 150 + hyperSpaceFactor * 100)
-          ctx.strokeStyle = `rgba(${blueIntensity}, ${blueIntensity + 30}, 255, ${star.opacity})`
-          ctx.lineWidth = dynamicSize * 0.5
+          // Usar el gradiente para la línea
+          ctx.strokeStyle = gradient
+          ctx.lineWidth = dynamicSize * 0.4 // Reducido para líneas más finas
           ctx.stroke()
 
-          // Add a small dot at the end for better visual effect
+          // Add a small dot at the end for mejor efecto visual
           ctx.beginPath()
-          ctx.arc(star.x, star.y, dynamicSize * 0.7, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`
+          ctx.arc(star.x, star.y, dynamicSize * 0.3, 0, Math.PI * 2) // Punto final más pequeño
+          ctx.fillStyle = `rgba(${star.color}, ${star.opacity * 0.8})`
           ctx.fill()
         } else {
           // Reset star position when not in hyperspace
@@ -203,7 +227,7 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
           // Draw normal star
           ctx.beginPath()
           ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`
+          ctx.fillStyle = `rgba(${star.color}, ${star.opacity})`
           ctx.fill()
         }
       })

@@ -328,11 +328,11 @@ export default function Home() {
       }
 
       // Iniciar la secuencia de hiperespacio
-      const maxHyperSpace = 8 // Mantenemos el máximo para un efecto dramático
+      const maxHyperSpace = 15 // Aumentamos aún más el máximo para un efecto más dramático
 
       // Animación de aceleración al hiperespacio
       let step = 0
-      const totalSteps = 30 // Aumentamos los pasos para una animación más lenta
+      const totalSteps = 30 // Mantenemos los pasos para una animación controlada
       const accelerate = () => {
         if (step < totalSteps) {
           const progress = step / totalSteps
@@ -373,7 +373,7 @@ export default function Home() {
             }
 
             requestAnimationFrame(decelerate)
-          }, 800) // Aumentamos el tiempo que se mantiene el efecto máximo
+          }, 800) // Mantenemos el tiempo que se mantiene el efecto máximo
         }
       }
 
