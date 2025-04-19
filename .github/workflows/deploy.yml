@@ -1,45 +1,96 @@
-name: Deploy to GitHub Pages
+# Workflow para construir y desplegar un sitio Next.js a GitHub Pages
+name: Deploy Next.js site to Pages
 
 on:
+  # Se ejecuta en pushes a la rama principal
   push:
-    branches:
-      - main  # o master, dependiendo de cómo se llame tu rama principal
+    branches: ["main"]
+
+  # Permite ejecutar este workflow manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+# Establece permisos del GITHUB_TOKEN para permitir el despliegue a GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite solo un despliegue concurrente, omitiendo ejecuciones en cola entre la ejecución en progreso y la última en cola.
+# Sin embargo, NO cancela las ejecuciones en progreso ya que queremos permitir que estos despliegues de producción se completen.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  # Trabajo de construcción
+  build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: web  # Establece el directorio de trabajo predeterminado para los comandos
-
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js ⚙️
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Detectar gestor de paquetes
+        id: detect-package-manager
+        run: |
+          if [ -f "${{ github.workspace }}/web/yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=yarn" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/web/package.json" ]; then
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "Unable to determine package manager"
+            exit 1
+          fi
+      - name: Configurar Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
-          cache-dependency-path: web/package-lock.json  # Ruta al package-lock.json
-
-      - name: Install dependencies 📦
-        run: npm install --legacy-peer-deps
-
-      - name: Build 🔧
-        run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
-
-      - name: Add .nojekyll file 🚫
-        run: touch out/.nojekyll
-
-      - name: Deploy to GitHub Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+          node-version: "20"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: web/package-lock.json
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
         with:
-          folder: web/out  # Asegúrate de que esta ruta sea correcta
-          branch: gh-pages
-          clean: true      # Limpia los archivos existentes
-          clean-exclude: |
-            .nojekyll
-          single-commit: true  # Usa un solo commit en lugar de preservar la historia
+          # Inyecta automáticamente basePath en tu archivo de configuración de Next.js y deshabilita
+          # la optimización de imágenes del lado del servidor (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+          static_site_generator: next
+      - name: Restaurar caché
+        uses: actions/cache@v4
+        with:
+          path: |
+            web/.next/cache
+          # Genera una nueva caché cuando los paquetes o archivos fuente cambian.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/web/package-lock.json', '**/web/yarn.lock') }}-${{ hashFiles('**/web/**.[jt]s', '**/web/**.[jt]sx') }}
+          # Si los archivos fuente cambiaron pero los paquetes no, reconstruye desde una caché anterior.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/web/package-lock.json', '**/web/yarn.lock') }}-
+      - name: Instalar dependencias
+        run: |
+          cd web
+          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --legacy-peer-deps
+      - name: Construir con Next.js
+        run: |
+          cd web
+          ${{ steps.detect-package-manager.outputs.runner }} next build
+      - name: Crear archivo .nojekyll
+        run: |
+          touch web/out/.nojekyll
+      - name: Subir artefacto
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./web/out
+
+  # Trabajo de despliegue
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
