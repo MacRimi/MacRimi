@@ -19,7 +19,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "MacRimi | Developer & Tech Enthusiast",
+  title: "MacRimi | Developer",
   description: "Personal portfolio and projects by MacRimi - Proxmox VE, Docker, and application development enthusiast",
   icons: {
     icon: [
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://macrimi.github.io/MacRimi",
-    title: "MacRimi | Developer & Tech Enthusiast",
+    url: "https://macrimi.pro",
+    title: "MacRimi | Developer",
     description: "Personal portfolio and projects by MacRimi",
     images: [
       {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MacRimi | Developer & Tech Enthusiast",
+    title: "MacRimi | Developer",
     description: "Personal portfolio and projects by MacRimi",
     images: ["https://macrimi.github.io/MacRimi/favicon/web-app-manifest-512x512.png"],
   },
