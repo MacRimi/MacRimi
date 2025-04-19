@@ -6,10 +6,12 @@ import { ChevronDown, Github } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 import Footer from "@/components/footer"
+import { useMobile } from "@/hooks/use-mobile"
 
 import { Brain, FolderKanban, Code2, BadgeHelp } from "lucide-react"
 
 export default function Home() {
+  const isMobile = useMobile()
   const [isAboutVisible, setIsAboutVisible] = useState(false)
   const [isProjectsVisible, setIsProjectsVisible] = useState(false)
   const [isProjectsTitleVisible, setIsProjectsTitleVisible] = useState(false)
@@ -21,6 +23,7 @@ export default function Home() {
   const [initialHeight, setInitialHeight] = useState(0)
   const [isHeroVisible, setIsHeroVisible] = useState(true) // Estado para controlar si la sección hero está visible
   const [showNavbar, setShowNavbar] = useState(false) // Estado para controlar la visibilidad de la navbar
+  const [isFullscreen, setIsFullscreen] = useState(false) // Estado para controlar si estamos en pantalla completa
   const heroSectionRef = useRef<HTMLElement>(null) // Referencia a la sección hero
   const aboutSectionRef = useRef<HTMLElement>(null)
   const aboutContentRef = useRef<HTMLDivElement>(null)
@@ -66,6 +69,47 @@ export default function Home() {
       window.removeEventListener("orientationchange", updateHeight)
     }
   }, [])
+
+  // Intentar entrar en modo pantalla completa en dispositivos móviles
+  useEffect(() => {
+    if (isMobile) {
+      const requestFullscreen = () => {
+        const docEl = document.documentElement
+
+        // Intentar entrar en pantalla completa
+        if (docEl.requestFullscreen) {
+          docEl
+            .requestFullscreen()
+            .then(() => setIsFullscreen(true))
+            .catch((err) => console.log("Error al intentar entrar en pantalla completa:", err))
+        } else if ((docEl as any).webkitRequestFullscreen) {
+          ;(docEl as any)
+            .webkitRequestFullscreen()
+            .then(() => setIsFullscreen(true))
+            .catch((err) => console.log("Error al intentar entrar en pantalla completa:", err))
+        } else if ((docEl as any).msRequestFullscreen) {
+          ;(docEl as any)
+            .msRequestFullscreen()
+            .then(() => setIsFullscreen(true))
+            .catch((err) => console.log("Error al intentar entrar en pantalla completa:", err))
+        }
+      }
+
+      // Añadir listener para el primer toque del usuario
+      const handleFirstTouch = () => {
+        requestFullscreen()
+        // Eliminar el listener después del primer toque
+        document.removeEventListener("touchstart", handleFirstTouch)
+      }
+
+      // En iOS, la pantalla completa solo se puede activar después de una interacción del usuario
+      document.addEventListener("touchstart", handleFirstTouch, { once: true })
+
+      return () => {
+        document.removeEventListener("touchstart", handleFirstTouch)
+      }
+    }
+  }, [isMobile])
 
   // Populate sections ref when all refs are available
   useEffect(() => {
@@ -512,7 +556,8 @@ export default function Home() {
           <StarField blurAmount={blurAmount} hyperSpaceFactor={hyperSpaceFactor} />
         </div>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <div className="text-center">
+          {/* Ajustamos la posición del logo para móviles */}
+          <div className={cn("text-center", isMobile ? "-translate-y-8" : "")}>
             <div
               className="px-4 sm:px-6 py-6 sm:py-8 rounded-lg inline-block relative w-[90%] sm:w-auto"
               style={{
@@ -530,8 +575,13 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Ajustamos la posición de la flecha para móviles */}
           <div
-            className={cn("absolute bottom-20 cursor-pointer", isJumping ? "opacity-0" : "animate-bounce")}
+            className={cn(
+              "absolute cursor-pointer",
+              isJumping ? "opacity-0" : "animate-bounce",
+              isMobile ? "bottom-36" : "bottom-20", // Subimos aún más la flecha en móviles para iPhone Max
+            )}
             onClick={scrollToAbout}
             role="button"
             aria-label="Scroll to about section"
@@ -579,12 +629,12 @@ export default function Home() {
                   games, <em>The Goonies</em>, <em>Star Wars</em>…
                 </p>
                 <p className="text-gray-300">
-                  And now, back to what brings us here: <strong>app development</strong>. That’s where I truly enjoy
+                  And now, back to what brings us here: <strong>app development</strong>. That's where I truly enjoy
                   myself and where I feel most at home.
                 </p>
                 <p className="text-gray-300">
-                  All my projects are born from my own needs, and I’ve always believed that if something is useful to
-                  me, it might also be useful to others. That’s why everything I build is crafted with care, attention
+                  All my projects are born from my own needs, and I've always believed that if something is useful to
+                  me, it might also be useful to others. That's why everything I build is crafted with care, attention
                   to detail, and genuine love—because at the end of the day, I build it for myself first.
                 </p>
 
@@ -604,8 +654,8 @@ export default function Home() {
                 </p>
                 <p className="text-gray-300">
                   Although if I go further back, around the year 2000, I created my first website: an online portal with
-                  news and tools for my city. Since then, I’ve never stopped learning—React, Next.js, Bash, Python… My
-                  curious mind just can’t sit still.
+                  news and tools for my city. Since then, I've never stopped learning—React, Next.js, Bash, Python… My
+                  curious mind just can't sit still.
                 </p>
 
                 <div className="border-t border-gray-600 my-6"></div>
@@ -615,7 +665,7 @@ export default function Home() {
                   How I See the World
                 </h3>
                 <p className="text-gray-300">
-                  I’ve never been satisfied just using things—I’ve always needed to know how they work. Games,
+                  I've never been satisfied just using things—I've always needed to know how they work. Games,
                   computers, tools, systems... I enjoy digging into the logic behind them, the hidden layers that make
                   them tick. For me, understanding is where the real fun begins.
                 </p>
@@ -656,12 +706,12 @@ export default function Home() {
                 </h3>
                 <div className="mt-4 p-6 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg border-l-4 border-blue-400 shadow-lg">
                   <blockquote className="text-xl italic text-gray-200 mb-4 relative pl-6">
-                    <span className="absolute left-0 top-0 text-3xl text-blue-400">“</span>
+                    <span className="absolute left-0 top-0 text-3xl text-blue-400">"</span>
                     What we do in life echoes in eternity.
                     <span className="block mt-2 text-right">— Maximus Decimus Meridius</span>
                   </blockquote>
                   <p className="text-gray-200">
-                    I always try to help others in any way I can—enjoying the journey along the way. And that’s how it
+                    I always try to help others in any way I can—enjoying the journey along the way. And that's how it
                     will always be.
                   </p>
                 </div>
