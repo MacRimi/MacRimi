@@ -43,8 +43,6 @@ export const metadata = {
     images: [
       {
         url: "https://macrimi.github.io/MacRimi/macrimi-preview.png",
-        width: 1200,
-        height: 630,
         alt: "MacRimi Developer Portfolio",
       },
     ],
@@ -71,7 +69,6 @@ export const metadata = {
     },
     shortcut: "https://macrimi.github.io/MacRimi/favicon/favicon.ico",
   },
-  manifest: "https://macrimi.github.io/MacRimi/favicon/site.webmanifest",
 }
 
 export default function RootLayout({
