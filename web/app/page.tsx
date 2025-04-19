@@ -568,7 +568,7 @@ export default function Home() {
                 <img
                   src="https://raw.githubusercontent.com/MacRimi/MacRimi/main/images/logo.png"
                   alt="MacRimi Logo"
-                  className="max-w-full h-auto w-48 sm:w-64 md:w-80 lg:w-96"
+                  className="max-w-full h-auto w-60 sm:w-64 md:w-80 lg:w-96"
                   style={{ filter: "drop-shadow(0 0 10px rgba(255,255,255,0.3))" }}
                 />
               </div>
