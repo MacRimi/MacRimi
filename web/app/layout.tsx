@@ -23,30 +23,30 @@ export const metadata: Metadata = {
   description: "Personal portfolio and projects by MacRimi - Proxmox VE, Docker, and application development enthusiast",
   icons: {
     icon: [
-      { url: "/favicon/favicon.ico", sizes: "any" },
-      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" }
+      { url: "https://macrimi.github.io/MacRimi/favicon/favicon.ico", sizes: "any" },
+      { url: "https://macrimi.github.io/MacRimi/favicon/favicon.svg", type: "image/svg+xml" },
+      { url: "https://macrimi.github.io/MacRimi/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" }
     ],
-    apple: { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    shortcut: "/favicon/favicon.ico",
+    apple: { url: "https://macrimi.github.io/MacRimi/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    shortcut: "https://macrimi.github.io/MacRimi/favicon/favicon.ico",
     other: [
-      { url: "/favicon/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/favicon/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png" }
+      { url: "https://macrimi.github.io/MacRimi/favicon/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "https://macrimi.github.io/MacRimi/favicon/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png" }
     ]
   },
-  manifest: "/favicon/site.webmanifest",
+  manifest: "https://macrimi.github.io/MacRimi/favicon/site.webmanifest",
   keywords: ["MacRimi", "Developer", "Proxmox", "Docker", "HWEncoderX", "ProxMenux"],
   authors: [{ name: "MacRimi" }],
   creator: "MacRimi",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://macrimi.github.io",
+    url: "https://macrimi.github.io/MacRimi",
     title: "MacRimi | Developer & Tech Enthusiast",
     description: "Personal portfolio and projects by MacRimi",
     images: [
       {
-        url: "/favicon/web-app-manifest-512x512.png",
+        url: "https://macrimi.github.io/MacRimi/favicon/web-app-manifest-512x512.png",
         width: 512,
         height: 512,
         alt: "MacRimi Logo",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MacRimi | Developer & Tech Enthusiast",
     description: "Personal portfolio and projects by MacRimi",
-    images: ["/favicon/web-app-manifest-512x512.png"],
+    images: ["https://macrimi.github.io/MacRimi/favicon/web-app-manifest-512x512.png"],
   },
 }
 
@@ -69,10 +69,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link rel="icon" href="https://macrimi.github.io/MacRimi/favicon/favicon.ico" sizes="any" />
+        <link rel="icon" href="https://macrimi.github.io/MacRimi/favicon/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="https://macrimi.github.io/MacRimi/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="https://macrimi.github.io/MacRimi/favicon/site.webmanifest" />
       </head>
       <body className={`${quicksand.variable} ${inter.variable} font-sans`}>
         {children}

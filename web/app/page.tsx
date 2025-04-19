@@ -549,7 +549,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-gray-700 flex-shrink-0">
                 <img
-                  src="/MacRimi.png"
+                  src="https://macrimi.github.io/MacRimi/MacRimi.png"
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
