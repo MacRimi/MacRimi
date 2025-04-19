@@ -78,6 +78,9 @@ jobs:
       - name: Crear archivo .nojekyll
         run: |
           touch web/out/.nojekyll
+      - name: Crear archivo CNAME
+        run: |
+          echo "macrimi.pro" > web/out/CNAME
       - name: Subir artefacto
         uses: actions/upload-pages-artifact@v3
         with:
