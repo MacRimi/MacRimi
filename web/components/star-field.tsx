@@ -83,8 +83,8 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
       centerXRef.current = canvas.width / 2
       centerYRef.current = canvas.height / 2
 
-      // Reduce star density on mobile
-      const densityFactor = isMobile ? 1500 : 1000
+      // Aumentar la densidad de estrellas en móvil para un efecto más impresionante
+      const densityFactor = isMobile ? 800 : 1000
       const starCount = Math.floor((canvas.width * canvas.height) / densityFactor)
       const stars: Star[] = []
 
@@ -96,7 +96,7 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
           y: y,
           originalX: x, // Store original position for hyperspace effect
           originalY: y, // Store original position for hyperspace effect
-          size: Math.random() * (isMobile ? 1.5 : 2) + 0.5,
+          size: Math.random() * (isMobile ? 2 : 2) + 0.5,
           opacity: Math.random(),
           blinkSpeed: Math.random() * 0.02 + 0.005,
           blinkDirection: Math.random() > 0.5 ? 1 : -1,
