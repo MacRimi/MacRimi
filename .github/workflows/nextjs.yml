@@ -70,7 +70,7 @@ jobs:
       - name: Instalar dependencias
         run: |
           cd web
-          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --legacy-peer-deps
       - name: Construir con Next.js
         run: |
           cd web
