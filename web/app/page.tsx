@@ -749,7 +749,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* ProxMenux */}
               <a
-                href="https://github.com/MacRimi/ProxMenux"
+                href="https://macrimi.github.io/ProxMenux/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
