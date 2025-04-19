@@ -10,8 +10,9 @@ const nextConfig = {
     unoptimized: true, 
   },
   output: 'export', // Habilita la exportación estática para GitHub Pages
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '', // Para subdirectorios en GitHub Pages
-  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '', // Para cargar assets correctamente
+  basePath: '/MacRimi', // Nombre de tu repositorio
+  assetPrefix: '/MacRimi/', // Nombre de tu repositorio con barra al final
+  trailingSlash: true, // Añadir barra al final de las URLs
 }
 
 export default nextConfig
