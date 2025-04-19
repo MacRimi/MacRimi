@@ -46,10 +46,8 @@ export const metadata: Metadata = {
     description: "Personal portfolio and projects by MacRimi",
     images: [
       {
-        url: "https://macrimi.github.io/MacRimi/favicon/web-app-manifest-512x512.png",
-        width: 512,
-        height: 512,
-        alt: "MacRimi Logo",
+        url: "https://macrimi.github.io/MacRimi/macrimi-preview.png", 
+        alt: "MacRimi Developer Portfolio",
       },
     ],
   },
@@ -57,10 +55,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MacRimi | Developer",
     description: "Personal portfolio and projects by MacRimi",
-    images: ["https://macrimi.github.io/MacRimi/favicon/web-app-manifest-512x512.png"],
+    images: ["https://macrimi.github.io/MacRimi/macrimi-preview.png"], 
   },
 }
-
 export default function RootLayout({
   children,
 }: Readonly<{
