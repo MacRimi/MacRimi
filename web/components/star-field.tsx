@@ -53,6 +53,28 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
+    // Función para actualizar el tamaño del canvas
+    const updateCanvasSize = () => {
+      if (!canvas) return
+
+      // Usar el 100% de la altura visible actual
+      const viewportHeight = window.innerHeight
+      canvas.height = viewportHeight
+      canvas.width = window.innerWidth
+
+      // Actualizar referencias
+      lastWidthRef.current = window.innerWidth
+      lastHeightRef.current = viewportHeight
+      initialHeightRef.current = viewportHeight
+
+      // Actualizar centro para efectos
+      centerXRef.current = canvas.width / 2
+      centerYRef.current = canvas.height / 2
+
+      // Regenerar estrellas para el nuevo tamaño
+      generateStars()
+    }
+
     // Generate stars with density based on device type
     const generateStars = () => {
       if (!canvas) return
@@ -85,21 +107,44 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
       starsRef.current = stars
     }
 
-    // Store initial window height on first render
-    if (initialHeightRef.current === 0) {
-      initialHeightRef.current = window.innerHeight
+    // Inicializar tamaño
+    updateCanvasSize()
 
-      // Set initial canvas size to this fixed height
-      canvas.height = initialHeightRef.current
-      canvas.width = window.innerWidth
+    // Manejar cambios de orientación y tamaño
+    const handleResize = () => {
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current)
+      }
 
-      lastWidthRef.current = window.innerWidth
-      lastHeightRef.current = initialHeightRef.current
-
-      generateStars()
+      resizeTimeoutRef.current = setTimeout(updateCanvasSize, isMobile ? 250 : 100)
     }
 
-    // Draw stars with hyperspace effect
+    // Añadir listener para orientationchange específicamente
+    window.addEventListener("orientationchange", () => {
+      // Pequeño retraso para permitir que el navegador actualice las dimensiones
+      setTimeout(updateCanvasSize, 300)
+    })
+
+    window.addEventListener("resize", handleResize)
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", handleResize)
+      window.removeEventListener("orientationchange", updateCanvasSize)
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current)
+      }
+    }
+  }, [isMobile])
+
+  // Draw stars with hyperspace effect
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
     const drawStars = () => {
       if (!ctx || !canvas) return
 
@@ -166,49 +211,14 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
       animationRef.current = requestAnimationFrame(drawStars)
     }
 
-    // Only handle width changes, ignore height changes completely
-    const handleResize = () => {
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current)
-      }
-
-      resizeTimeoutRef.current = setTimeout(
-        () => {
-          // Only update if width changed significantly
-          if (Math.abs(window.innerWidth - lastWidthRef.current) > 50) {
-            canvas.width = window.innerWidth
-            // Keep the height fixed to initial height
-            canvas.height = initialHeightRef.current
-
-            lastWidthRef.current = window.innerWidth
-            // Height remains constant
-
-            // Update center point
-            centerXRef.current = canvas.width / 2
-            centerYRef.current = canvas.height / 2
-
-            generateStars()
-          }
-        },
-        isMobile ? 500 : 250,
-      )
-    }
-
-    // Initialize
-    window.addEventListener("resize", handleResize)
     drawStars()
 
-    // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize)
-      if (resizeTimeoutRef.current) {
-        clearTimeout(resizeTimeoutRef.current)
-      }
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [isMobile, hyperSpaceFactor])
+  }, [hyperSpaceFactor])
 
   // Apply blur filter based on the blur amount with a smoother transition
   const blurStyle = {
@@ -219,10 +229,9 @@ export function StarField({ blurAmount = 0, hyperSpaceFactor = 0 }: StarFieldPro
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full"
+      className="fixed inset-0 w-full h-full"
       style={{
         ...blurStyle,
-        height: `${initialHeightRef.current}px`, // Use fixed height based on initial viewport
       }}
       aria-hidden="true"
     />

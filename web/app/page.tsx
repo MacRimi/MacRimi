@@ -46,10 +46,26 @@ export default function Home() {
 
   // Store initial height on first render
   useEffect(() => {
-    if (initialHeight === 0) {
+    // Función para actualizar la altura
+    const updateHeight = () => {
       setInitialHeight(window.innerHeight)
     }
-  }, [initialHeight])
+
+    // Establecer altura inicial
+    updateHeight()
+
+    // Actualizar en cambios de tamaño y orientación
+    window.addEventListener("resize", updateHeight)
+    window.addEventListener("orientationchange", () => {
+      // Pequeño retraso para permitir que el navegador actualice las dimensiones
+      setTimeout(updateHeight, 300)
+    })
+
+    return () => {
+      window.removeEventListener("resize", updateHeight)
+      window.removeEventListener("orientationchange", updateHeight)
+    }
+  }, [])
 
   // Populate sections ref when all refs are available
   useEffect(() => {
@@ -423,7 +439,8 @@ export default function Home() {
 
   // Use fixed height for hero section based on initial viewport height
   const heroStyle = {
-    height: initialHeight ? `${initialHeight}px` : "100vh",
+    height: "100vh", // Usar viewport height directamente
+    minHeight: initialHeight ? `${initialHeight}px` : "100%", // Fallback
   }
 
   // Clase común para los títulos de sección

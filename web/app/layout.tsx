@@ -27,7 +27,7 @@ export const metadata = {
   creator: "MacRimi",
   publisher: "MacRimi",
   description:
-    "Personal portfolio and projects by MacRimi - Proxmox VE, Docker, and application development",
+    "Personal portfolio and projects by MacRimi - Proxmox VE, Docker, and application development enthusiast",
   formatDetection: {
     email: false,
     address: false,
@@ -37,12 +37,14 @@ export const metadata = {
   openGraph: {
     title: "MacRimi | Developer",
     description:
-      "Personal portfolio and projects by MacRimi - Proxmox VE, Docker, and application development",
+      "Personal portfolio and projects by MacRimi - Proxmox VE, Docker, and application development enthusiast",
     url: "https://macrimi.pro/",
     siteName: "MacRimi Portfolio",
     images: [
       {
         url: "https://macrimi.github.io/MacRimi/macrimi-preview.png",
+        width: 1200,
+        height: 630,
         alt: "MacRimi Developer Portfolio",
       },
     ],
@@ -53,7 +55,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "MacRimi | Developer",
     description:
-      "Personal portfolio and projects by MacRimi - Proxmox VE, Docker, and application development",
+      "Personal portfolio and projects by MacRimi - Proxmox VE, Docker, and application development enthusiast",
     images: ["https://macrimi.github.io/MacRimi/macrimi-preview.png"],
   },
   icons: {
@@ -80,6 +82,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no"
+        />
         <meta name="description" content={metadata.description} />
         <meta property="og:title" content={metadata.openGraph?.title} />
         <meta property="og:description" content={metadata.openGraph?.description} />
