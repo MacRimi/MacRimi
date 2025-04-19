@@ -10,9 +10,10 @@ const nextConfig = {
     unoptimized: true, 
   },
   output: 'export', // Habilita la exportación estática para GitHub Pages
-  basePath: '/MacRimi', // Nombre de tu repositorio
-  assetPrefix: '/MacRimi/', // Nombre de tu repositorio con barra al final
-  trailingSlash: true, // Añadir barra al final de las URLs
+  // Ya no necesitas estas líneas cuando usas un dominio personalizado
+  // basePath: '/MacRimi', 
+  // assetPrefix: '/MacRimi/',
+  trailingSlash: true, // Mantener esto para compatibilidad
 }
 
 export default nextConfig
